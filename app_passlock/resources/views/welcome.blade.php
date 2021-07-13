@@ -128,9 +128,9 @@
             
 
         </section>
-        <div class="col mt-5">
-            <x-footer >
-            </x-footer>
+        <x-price></x-price>
+        <div class=" mt-5">
+            <x-footer > </x-footer>
         </div>
     </body>
 </html>

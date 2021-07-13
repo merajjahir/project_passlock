@@ -1,11 +1,4 @@
 
-<style>
-    .settings-style{
-        /* height: 90vh; */
-        background-color: rgba(141, 210, 140, 0.1);
-        
-    }
-  </style>
   
   
   <x-app-layout>
@@ -13,86 +6,50 @@
             {{ __('And this is the settings page ') }}
     </x-slot>
   
-
  
-    <div class=" mt-2 settings-style " >
+    <div class="row  mt-2 ml-0 pl-0 mr-0 pr-0 " >
+        <div class="col-lg-2 col-md-4 col-sm-4  pt-5  bd-sidebar">
+            <x-settingsNavigation></x-settingsNavigation>
+        </div>
 
-        <div class=" text-muted pt-5 " >
-
-            
-
-                <form class="col" action=" {{route('settings')}} " method="POST">
-                    @csrf
-                    <div class="col-lg-12 col-sm-12 col-md-12 mb-3">
-
-                        <label for="field1">Your login email to verify it's you</label>
-                          <input type="email" name="unimail" value="{{old('unimail')}}" class="form-control" id="" placeholder="Your login email">
-                              @if($errors->has('unimail'))
-                                  <div class="text-danger">
-                                      {{$errors->first('unimail')}}
-                                  </div>
-                              @endif
-                    </div>
-
-                    <div class="col-lg-12 col-sm-12 col-md-12 mb-3">
-
-                        <label for="field1"> Your login password to verify it's you, i know i am repeating my-self </label>
-                      
-                              <input type="password" class="form-control"  name="authpass" id="" placeholder="Your login password">
-                              @if($errors->has('authpass'))
-                                  <div class="text-danger">
-                                      {{$errors->first('authpass')}}
-                                  </div>
-                              @endif
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-md-12 mb-3">
-
-                        <label for="field1">Now you can change the username</label>
-                      
-                           
-                              <input type="text" name="name" class="form-control" value="{{old('name')}}"  placeholder="Your new probably creative username"> 
-                              @if($errors->has('name'))
-                                  <div class="text-danger">
-                                      {{$errors->first('name')}}
-                                  </div>
-                              @endif  
-                    </div>
-
-                    <div class="col-lg-12 col-sm-12 col-md-12 mb-3">
-
-                        <label for="field1">Here you can update your password </label>
-                      
-                              <input type="password" class="form-control" name="password" id="" placeholder="Set a new you password for your this account"> 
-                              @if($errors->has('password'))
-                                  <div class="text-danger">
-                                      {{$errors->first('password')}}
-                                  </div>
-                              @endif  
-                    </div>
-
-                    <div class="col-lg-12 col-sm-12 col-md-12 mb-3">
-                        <label for="field1">Now you need to match this field with the privious field to successfully change the password </label>
-                        <input type="password" name="confirm" class="form-control" id="" placeholder="please confirm your password"> 
-                            @if($errors->has('confirm'))
-                                <div class="text-danger">
-                                    {{$errors->first('confirm')}}
-                                </div>
-                            @endif 
-                    </div>
-
-
-                    <div class="col-sm-12 col-md-12 col-lg-12 mt-4">
-                        <button class="btn btn-success col-lg-12" type="submit">Submit form</button>
-                      </div>
-
-
-
+        <div class="col-lg-10  col-md-8  col-sm-8  text-muted ">
+            <div id="set_form_body" style="display: none" class="pt-5">
+                <x-settings-from ></x-settings-from>
                 
-                </form>
+            </div>  
+            <div id="set_price_body" style="display:block " class="py-3">
+                <x-price></x-price>
+                
+            </div>    
         </div>
     </div>
-    <div class="col mt-5">
+
+    
+    <div class=" mt-5">
         <x-footer></x-footer>
     </div>
 
 </x-app-layout>
+
+
+<script type="text/javascript">
+   
+   const setting_from_btn = document.getElementById('profile_setting'); 
+   const setting_price_btn = document.getElementById('profile_price'); 
+   const set_form_body = document.getElementById('set_form_body'); 
+   const set_price_body = document.getElementById('set_price_body'); 
+
+
+
+    
+    setting_from_btn.addEventListener('click',() => {
+                set_form_body.style.display = "block";
+                set_price_body.style.display = "none";
+    })
+    setting_price_btn.addEventListener('click',() => {
+                set_form_body.style.display = "none";
+                set_price_body.style.display = "block";
+    })
+  
+
+</script>
